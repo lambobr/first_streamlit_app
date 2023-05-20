@@ -15,7 +15,8 @@ my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.co
 
 # Let's put a pick list here so they can pick the fruit they want to include
 # streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index)) # the list is the values of index which is values from column "Fruit"
-selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado','Strawberries']) # adding default picks Avocado and Strawberries
+fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado','Strawberries']) # adding default picks Avocado and Strawberries
+fruits_to_show = my_fruit_list.loc[fruits_selected] # loc is used to access the rows based on selected indices
 
 # Display the table on the page
-streamlit.dataframe(my_fruit_list[my_fruit_list[Fruit].isin(selected)])
+streamlit.dataframe(fruits_to_show)
