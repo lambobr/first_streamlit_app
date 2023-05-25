@@ -28,7 +28,7 @@ streamlit.dataframe(fruits_to_show)
 streamlit.header('Fruityvice Fruit Advice!')
 try:
   fruit_input = streamlit.text_input('What fruit would like information about?','Kiwi') # Kiwi is optionally included to show Kiwi when the page loads first
-  if not fruit_choice:
+  if not fruit_input:
     streamlit.error("Please select a fruit to get information.")
   else:
     streamlit.write('The user entered', fruit_input)
