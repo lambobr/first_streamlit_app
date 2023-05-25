@@ -1,6 +1,8 @@
 import streamlit
 import pandas
 import requests
+import snowflake.connector
+import urllib.error import URLError
 
 
 streamlit.title('My Parents New Healthy Diner')
@@ -31,9 +33,10 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_i
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json()) # json_normalize converts json to table
 streamlit.dataframe(fruityvice_normalized) # show the table on page
 
+streamlit.stop()
 
 # connect to snowflake
-import snowflake.connector
+
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])  # secrets is made inside streamlit app settings. secrets also contain default settings to use like username, password, database, schema
 my_cur = my_cnx.cursor()
