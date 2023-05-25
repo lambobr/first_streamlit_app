@@ -30,9 +30,8 @@ def get_fruityvice_details(fruit_input):
   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_input)
   # streamlit.text(fruityvice_response.json())
   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json()) # json_normalize converts json to table
-  #return  fruityvice_normalized 
-  return streamlit.dataframe(fruityvice_normalized )
- 
+  return  fruityvice_normalized 
+
 
 streamlit.header('Fruityvice Fruit Advice!')
 try:
@@ -42,7 +41,7 @@ try:
   else:
     streamlit.write('The user entered', fruit_input)
     function_output = get_fruityvice_details(fruit_input)
-     # show the table on page
+    streamlit.dataframe(fruityvice_normalized ) # show the table on page
 except URLError as e:
   streamlit.error()
 
