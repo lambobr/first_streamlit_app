@@ -41,7 +41,7 @@ try:
   else:
     streamlit.write('The user entered', fruit_input)
     function_output = get_fruityvice_details(fruit_input)
-    streamlit.dataframe(fruityvice_normalized ) # show the table on page
+    streamlit.dataframe(function_output) # show the table on page
 except URLError as e:
   streamlit.error()
 
