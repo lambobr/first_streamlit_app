@@ -26,12 +26,18 @@ fruits_to_show = my_fruit_list.loc[fruits_selected] # loc is used to access the 
 streamlit.dataframe(fruits_to_show)
 
 streamlit.header('Fruityvice Fruit Advice!')
-fruit_input = streamlit.text_input('What fruit would like information about?','Kiwi') # Kiwi is optionally included to show Kiwi when the page loads first
-streamlit.write('The user entered', fruit_input)
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_input)
-# streamlit.text(fruityvice_response.json())
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json()) # json_normalize converts json to table
-streamlit.dataframe(fruityvice_normalized) # show the table on page
+try:
+  fruit_input = streamlit.text_input('What fruit would like information about?','Kiwi') # Kiwi is optionally included to show Kiwi when the page loads first
+  if not fruit_choice:
+    streamlit.error("Please select a fruit to get information.")
+   else:
+    streamlit.write('The user entered', fruit_input)
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_input)
+    # streamlit.text(fruityvice_response.json())
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json()) # json_normalize converts json to table
+    streamlit.dataframe(fruityvice_normalized) # show the table on page
+except URLError as e:
+  streamlit.error()
 
 streamlit.stop()
 
