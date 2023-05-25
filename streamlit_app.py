@@ -30,7 +30,7 @@ try:
   fruit_input = streamlit.text_input('What fruit would like information about?','Kiwi') # Kiwi is optionally included to show Kiwi when the page loads first
   if not fruit_choice:
     streamlit.error("Please select a fruit to get information.")
-   else:
+  else:
     streamlit.write('The user entered', fruit_input)
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_input)
     # streamlit.text(fruityvice_response.json())
